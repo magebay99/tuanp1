@@ -1,5 +1,6 @@
 # Tuấn Project 01
-The first project with PHP
+The first project with PHP.
+
 Yêu cầu:
 
 Xây dựng ứng dụng đơn giản quản lý user và thư viện ảnh, bao gồm các tác vụ sau:
