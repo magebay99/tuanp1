@@ -6,7 +6,9 @@ Xây dựng ứng dụng đơn giản quản lý user và thư viện ảnh, bao
 
 1. Tạo sơ đồ cơ sở dữ liệu (Database Diagram)
 2. Xây dựng ứng dụng:
+
 2.1 Backend: admin đăng nhập và quản lý user (thêm, sửa, xóa). Logout link. (Tạo admin khi xây dựng database)
+
 2.2 Frontend:
 _ Form đăng ký user
 _ Form đăng nhập
