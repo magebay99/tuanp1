@@ -1,0 +1,36 @@
+.table-hover tbody tr:hover {
+    cursor: pointer;
+}
+
+.table tbody tr td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.panel-heading .pull-right {
+    margin-top: -20px;
+}
+
+.panel-footer {
+    background-color: white;
+}
+
+/*.table{
+    margin-top: 25px;
+}*/
+
+#pageinfo {
+    list-style-type: none;
+}
+
+#pageinfo li {
+    float: left;
+    padding: 5px 5px;
+    text-align: center;    
+    vertical-align: middle;
+}
+
+#pageinfo li:first-child{
+    font-weight: bold;
+    font-size: 16px;
+}

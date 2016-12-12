@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="GallerySoft.info" />
+    <link rel="stylesheet" type="text/css" href='<?php echo $this->baseUrl()."/public/css/bootstrap.css"; ?>' />
+    <script type="text/javascript" src='<?php echo $this->baseUrl()."/public/js/jquery-3.1.1.js"; ?>'></script>
+    <script type="text/javascript" src='<?php echo $this->baseUrl()."/public/js/bootstrap.js"; ?>'></script>
+    <script type="text/javascript" src='<?php echo $this->baseUrl()."/public/js/common.js"; ?>'></script>
+    <?php echo $this->headScript(); ?>
+    <?php echo $this->headLink(); ?>
+    <?php echo $this->headStyle(); ?>
+    <?php echo $this->headTitle(); ?>
+    <style>
+        /* Remove the navbar's default rounded borders and increase the bottom margin */ 
+        .navbar {
+          margin-bottom: 50px;
+          border-radius: 0;
+        }
+        
+        /* Remove the jumbotron's default bottom margin */ 
+         .jumbotron {
+          margin-bottom: 0;
+        }
+       
+        /* Add a gray background color and some padding to the footer */
+        footer {
+          background-color: #f2f2f2;
+          padding: 25px;
+        }
+  </style>    
+</head>
+
+<body>
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>My Gallery</h1>
+  </div>
+</div>
+<?php
+        $session = new Zend_Session_Namespace('Auth');
+        
+        $homeUrl = $this->url(array(
+            'controller' => 'index',
+            'action'     => 'index',
+        ));
+        
+        $loginUrl = $this->url(array(
+            'controller' => 'user',
+            'action'     => 'login',
+        )); 
+        
+        $logoutUrl = $this->url(array(
+            'controller' => 'user',
+            'action'     => 'logout',
+        ));
+        
+        $registerUrl = $this->url(array(
+            "controller" => "user",
+            "action" => "register",
+        ));
+?>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a id="homeLink" class="navbar-brand" href="/tuanp1/">MG</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav" id="">
+        <input type="hidden" id="thisurl" value="<?php echo $this->url(); ?>" />
+        <!--
+<li><a href="<?php echo $homeUrl; ?>">Home</a></li>
+-->
+        <li id="index"><a href="/tuanp1/">Home</a></li>
+        <?php
+            if(!empty($session->data)){
+                if($session->data["level"] == 2){
+        ?>
+            <li class="dropdown" id="user">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Management
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/tuanp1/user/adduser">Add User</a></li>
+              <li><a href="/tuanp1/user/listuser">List User</a></li>
+            </ul>
+            </li>
+        <?php
+                }
+            }
+        ?>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li>
+        <?php
+            if(!empty($session->data)){
+                echo "<img src='/tuanp1/".$session->data["avatar"]."' width='50px' style='border-radius: 25px;'/>";
+            }
+        ?>
+      </li>
+     <?php
+        //$session = new Zend_Session_Namespace('Auth');
+        if(!empty($session->data)){
+            echo "<li><a href='javascript:void(0);'> Welcome, ".$session->data["fullname"]."</a></li>";
+            echo "<li onclick='logoutFb();'><a href='/tuanp1/user/logout'><span class='glyphicon glyphicon-log-out'></span> Log out</a></li>";
+        }
+        else{
+            echo "<li><a href='/tuanp1/user/login'><span class='glyphicon glyphicon-log-in'></span> Log in</a></li>";
+            echo "<li><a href='/tuanp1/user/register'><span class='glyphicon glyphicon-user'></span> Register</a></li>";
+        }
+     ?>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <?php
+        echo $this->layout()->content;
+    ?>
+</div>
+<br/><br/>
+
+<footer class="container-fluid text-center">
+    <p>Footer</p>
+  <!--
+<p>Online Store Copyright</p>  
+  <form class="form-inline">Get deals:
+    <input type="email" class="form-control" size="50" placeholder="Email Address">
+    <button type="button" class="btn btn-danger">Sign Up</button>
+  </form>
+-->
+</footer>
+</body>
+</html>

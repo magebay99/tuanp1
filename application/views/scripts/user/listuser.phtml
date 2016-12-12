@@ -1,0 +1,94 @@
+<?php 
+    $this->headTitle("List User");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/listuser.js");
+    $this->headLink()->appendStylesheet($this->baseUrl()."/public/css/css_custom/table.css");
+?>
+<div id="view-content">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">List User</h3>
+            <div class="pull-right">
+                <button class="btn btn-default btn-xs" id="filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
+            </div>
+        </div>
+        <div class="panel-body" style="display: none;">
+            <form class="form-inline pull-left">
+                <div class="form-group">
+                    <label>PageRecord:&nbsp;</label>
+                    <select class="form-control" id="record" onchange="ChangeRecord();">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sort By:&nbsp;</label>
+                    <select class="form-control" id="orderby" onchange="ChangeOrderBy();">
+                        <option value="id">ID</option>
+                        <option value="fullname">Fullname</option>
+                        <option value="fullname">Username</option>
+                        <option value="gender">Gender</option>
+                    </select>
+                </div>
+            </form>    
+            <form class="form-inline pull-right" id="condition">                
+                <div class="form-group">
+                    <select class="form-control" id="gender" name="gender">
+                        <option value=""></option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="fullname" name="fullname" placeholder="fullname">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="username">
+                </div>
+                <a class="btn btn-default" id="btnSearch" ><span class="glyphicon glyphicon-search"></span> Search</a>
+            </form>
+        </div>        
+        <div class="container" style="width: 99%;">        
+        <table class="table table-bordered table-hover">
+            <ul id="pageinfo">
+                <li>
+                    TotalRecord: 
+                    <span id="total-record"></span>
+                </li>
+                <li>
+                    <span id="from-record"></span>
+                    ->
+                    <span id="to-record"></span>            
+                </li>
+            </ul>
+            <thead>
+                <colgroup>
+                    <col width="10%" />
+                    <col width="30%" />
+                    <col width="30%" />
+                    <col width="8%" />
+                    <col width="22%" />
+                </colgroup>
+              <tr>
+                <th>No.</th>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Gender</th>
+                <th></th>
+              </tr>            
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+      </table>
+      </div>
+      <div class="panel-footer text-center">
+        <ul class="pagination">
+            <li class=""><a href="javascript:void(0)">&laquo;</a></li>
+            
+            <li class=""><a href="javascript:void(0)">&raquo;</a></li>
+        </ul>
+      </div>
+    </div>
+</div>

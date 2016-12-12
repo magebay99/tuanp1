@@ -1,0 +1,19 @@
+<?php 
+    $this->headTitle("Register");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/user.js");
+?>
+<div id="view-content">
+    <div id="signupbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Sign Up</div>
+            </div>  
+            <div class="panel-body" >
+                <?php
+                    $this->form->setAction($this->url());
+                    echo $this->form;
+                ?> 
+            </div>
+        </div>
+    </div> 
+</div>
