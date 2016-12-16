@@ -173,6 +173,7 @@ class Model_User extends Model_HubModel{
     
     public function AddUser($data, $userLogin){        
         $datetimeNow = $this->GetDateTimeNow();  
+        $data["avatar"] = "public/image/user_default.png";
         $data["created"] = $datetimeNow;
         $data["modified"] = $datetimeNow;
         $id = $userLogin["id"];

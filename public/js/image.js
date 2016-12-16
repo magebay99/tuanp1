@@ -37,7 +37,7 @@ function SaveName(nameInput, id){
                     updateImage["name"] = name;
                     updateImage["id"] = id;
                     $.ajax({
-                        url : "../image/updateimagename",
+                        url : "/tuanp1/image/updateimagename",
                         type : "POST",
                         data : {data: JSON.stringify(updateImage)},
                         dataType: "json",
@@ -124,7 +124,7 @@ function SetMainImage(main,album_id, id){
     updatedImage["main_image"] = true;
     updatedImage["album_id"] = album_id;
     $.ajax({
-         url : "../image/updatemainimage",
+         url : "/tuanp1/image/updatemainimage",
         type : "POST",
         data : {data: JSON.stringify(updatedImage)},
         dataType: "json",
@@ -159,7 +159,7 @@ function AddImage(imagePath){
         newImage["album_id"] = $("#album-id").val();
         newImage["main_image"] = false;
         $.ajax({
-            url : "../image/addimage",
+            url : "/tuanp1/image/addimage",
             type : "POST",
             data : {data: JSON.stringify(newImage)},
             dataType: "json",
@@ -208,7 +208,7 @@ function SearchImage(){
     var name = $("#search-name").val();
     var albumId = $("#album-id").val();
     $.ajax({
-        url : "../image/searchimage",
+        url : "/tuanp1/image/searchimage",
         type : "POST",
         data : {name: name, albumId: albumId},
         dataType: "json",
@@ -234,7 +234,7 @@ function DeleteImage(input,imageId){
     if (r == true) {
         var albumId = $("#album-id").val();
         $.ajax({
-            url : "../image/deleteimage",
+            url : "/tuanp1/image/deleteimage",
             type : "POST",
             data : {imageId: imageId, albumId: albumId},
             dataType: "json",

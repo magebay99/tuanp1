@@ -1,5 +1,4 @@
 <?php
-
 class UserController extends Zend_Controller_Action
 {   
     public function init()
@@ -60,12 +59,12 @@ class UserController extends Zend_Controller_Action
         unset($data["picture"]);
         unset($data["fbid"]);
         $result = array();
-        try{
-            $data["avatar"] = $this->DownloadImage($imgUrl,$fbUserId);
+        try{            
             $modelUser = new Model_User;
             $modelUser->setName("users");
             $modelUser->setPrimary("id");
             if(($modelUser->CheckUnique("","users","username",$fbUsername))){
+                $data["avatar"] = $this->DownloadImage($imgUrl,$fbUserId);
                 $result = $modelUser->Register($data);
                 echo Zend_Json::encode($result); 
             }

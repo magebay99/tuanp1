@@ -202,6 +202,7 @@ function UpdateProfile(){
                 $("#errorBox").hide();
                 if(response.success){
                     alert(response.message);
+                    window.location.replace("/tuanp1");
                 }
                 else{
                     alert(response.message);

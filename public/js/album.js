@@ -59,7 +59,7 @@ function AddAlbum(){
      if(validTitle.status){
         var formData = getFormData($("form"));
         $.ajax({
-            url : "../album/addalbum",
+            url : "/tuanp1/album/addalbum",
             type : "POST",
             data : {data: JSON.stringify(formData)},
             dataType: "json",
@@ -85,7 +85,7 @@ function AddAlbum(){
 
 function GetListAlbum(){
     $.ajax({
-        url : "../album/listalbum",
+        url : "/tuanp1/album/listalbum",
         type : "POST",
         data : "",
         dataType: "json",
@@ -118,7 +118,7 @@ function SaveTile(input, albumId){
             updatedAlbum["title"] = newTitle;
             updatedAlbum["id"] = albumId;
             $.ajax({
-                url : "../album/updatetitle",
+                url : "/tuanp1/album/updatetitle",
                 type : "POST",
                 data : {updatedAlbum: updatedAlbum},
                 dataType: "json",
@@ -168,7 +168,7 @@ function DrawListAlbum(listAlbum){
 
 function CheckDeleteAlbum(input,albumId){
     $.ajax({
-        url : "../album/checkdeletealbum",
+        url : "/tuanp1/album/checkdeletealbum",
         type : "POST",
         data : {albumId: albumId},
         dataType: "json",
@@ -190,7 +190,7 @@ function DeleteAlbum(input, albumId){
     var r = confirm("This album still store image.\nYou sure you want to delete the album?");
     if (r == true) {
         $.ajax({
-            url : "../album/deletealbum",
+            url : "/tuanp1/album/deletealbum",
             type : "POST",
             data : {albumId: albumId},
             dataType: "json",

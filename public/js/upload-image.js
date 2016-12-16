@@ -28,7 +28,7 @@ function UpLoadToTemp(oInput) {
         form_data.append('file', file);
         if($.inArray(file.type, imgExtensions) !== -1){
             $.ajax({
-                url : "../user/uploadimage",
+                url : "/tuanp1/user/uploadimage",
                 type : "POST",
                 cache: false,
                 contentType: false,
