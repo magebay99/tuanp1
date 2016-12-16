@@ -358,6 +358,8 @@ class UserController extends Zend_Controller_Action
             $modelUser->setName("users");
             $modelUser->setPrimary("id");        
             $result = $modelUser->UpdateUser($formData, $session->data);
+            $user = $modelUser->GetUserById($session->data["id"]);
+            $session->data = $user[0];
             echo Zend_Json::encode($result);           
         }
     }
