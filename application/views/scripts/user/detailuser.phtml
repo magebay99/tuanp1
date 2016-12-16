@@ -1,0 +1,73 @@
+<?php 
+    $this->headTitle("Detail User");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/user.js");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/upload-image.js");
+?>
+<div id="view-content">
+    <div id="detailuserbox" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Detail User</div>
+            </div>  
+            <div class="panel-body" >
+                <img id="upload-image" src='/tuanp1/<?php echo $this->user["avatar"]; ?>' style="width: 200px; margin-left: 155px;cursor: pointer;" />
+                <input type="file" id="my-file" onchange="UpLoadToTemp(this);" style="display: none;" />
+                <form class="form-horizontal" action='' method= 'POST' >
+                    <div id="errorBox" style="margin-bottom: 15px; display: none" class="alert alert-danger">
+                    </div>
+                    <input type="hidden" id="id" name="id" value="<?php echo $this->user["id"]; ?>" />
+                    <input type="hidden" id="avatar" name="avatar" value="<?php echo $this->user["avatar"]; ?>" />
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Username</label>
+                        <div class="col-md-9">
+                            <?php echo $this->user["username"]; ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Authority</label>
+                        <div class="col-md-9">
+                            <?php
+                                if($this->user["level"] == 2){
+                                    echo "Admin";
+                                }
+                                else{
+                                    echo "Normal User";
+                                }                        
+                            ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Fullname</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" regstring="^[a-zA-Z ]{8,50}$" id="fullname" name="fullname" value="<?php echo $this->user["fullname"]; ?>" />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Gender</label>
+                        <div class="col-md-9">
+                            <?php
+                                if($this->user["gender"] == 0){
+                                    echo "<label class='radio-inline'>"."<input type='radio' name='gender' value='0' checked >Female</label>";
+                                    echo "<label class='radio-inline'>"."<input type='radio' name='gender' value='1' >Male</label>";   
+                                }
+                                else{
+                                    echo "<label class='radio-inline'>"."<input type='radio' name='gender' value='0' >Female</label>";
+                                    echo "<label class='radio-inline'>"."<input type='radio' name='gender' value='1' checked >Male</label>";   
+                                }                                                                           
+                            ?>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">                                      
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="button" class="btn btn-info" onclick="UpdateProfile();" value="Update" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> 
+</div>

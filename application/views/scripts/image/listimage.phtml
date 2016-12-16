@@ -1,0 +1,32 @@
+<?php 
+    $this->headTitle("Image");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/image.js");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/upload-image.js");
+    $this->headLink()->appendStylesheet($this->baseUrl()."/public/css/css_custom/image.css");
+?>
+<div id="view-content">
+    <div class="container" style="margin-bottom: 20px;">
+        <button class="btn btn-success" id="btnAddImage"><span class="glyphicon glyphicon-plus" ></span> Add Image</button>
+        <input type="file" id="my-file" onchange="UpLoadToTemp(this);" style="display: none;" />
+        <input type="hidden" id="avatar" />
+        <form class="form-inline pull-right">         
+            <input type="text" class="form-control" id="search-name" size="35" placeholder="name" />
+            <a class="btn btn-default" id="btnSearch" ><span class="glyphicon glyphicon-search"></span> Search</a>
+        </form>
+    </div>
+    <input type="hidden" id="album-id" value="<?php echo $this->albumId; ?>" />
+    <input type="hidden" id="list-image-data" value='<?php echo Zend_Json::encode($this->listImage); ?>' />
+    <div class="row" id="list-image">
+		
+    </div>
+<a data-toggle="modal" data-target="#lightbox"></a>
+<div id="lightbox" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img src="" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+</div>

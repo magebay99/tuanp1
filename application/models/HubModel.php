@@ -44,7 +44,7 @@
         
         public function CheckUnique($id, $tableName, $fieldName, $value){
             $unique = false;
-            $strQuery = "SELECT id, username FROM users WHERE ".$fieldName."='".$value."' ";
+            $strQuery = "SELECT id FROM ".$tableName." WHERE ".$fieldName."='".$value."' ";
             if($id != ""){
                 $strQuery .= "AND id='".$id."'";
             }

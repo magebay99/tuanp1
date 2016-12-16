@@ -2,7 +2,7 @@
 class Model_User extends Model_HubModel{
     public function GetUserByUsername($username){
         $strQuery = "SELECT id, username, password, fullname, gender, birthday, avatar, created, modified, deleted, created_user, modified_user, deleted_user, level FROM users ";
-        $strQuery .= "WHERE username='".$username."'";
+        $strQuery .= "WHERE deleted IS NULL AND username='".$username."'";
         try{
             $sql = $this->db->query($strQuery);
             return $sql->fetchAll();
@@ -22,7 +22,6 @@ class Model_User extends Model_HubModel{
         catch(Exception $ex){
             // làm log
             //return $ex->getMessage();
-            
         }
         return $listUser;
     }
@@ -62,8 +61,8 @@ class Model_User extends Model_HubModel{
     }
     
     public function GetUserById($id){
-        $strQuery = "SELECT id, username, password, fullname, gender, birthday, level FROM users ";
-        $strQuery .= "WHERE id='".$id."'";
+        $strQuery = "SELECT id, username, password, fullname, gender, birthday, avatar, level FROM users ";
+        $strQuery .= "WHERE deleted IS NULL AND id='".$id."'";
         try{
             $sql = $this->db->query($strQuery);
             return $sql->fetchAll();

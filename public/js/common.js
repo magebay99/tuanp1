@@ -79,7 +79,7 @@ function validate_input(id_input) {
         if (value_input != '' && table != '') {
             if(!CheckUnique(id_check, table, id_input, value_input)){
                 valid.status = false;
-                valid.error.push(" is existed!");
+                valid.error.push("is existed!");
             }
         }
     }
@@ -102,4 +102,8 @@ function CheckUnique(id, tableName, fieldName, value){
         }
     })
     return success;
+}
+
+function CheckFileExist(filePath){
+    
 }

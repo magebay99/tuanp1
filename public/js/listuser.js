@@ -165,6 +165,9 @@ function SetPageInfo(totalRecord,pageIndex,pageRecord){
         toRecord = 0;
         fromRecord = 0;
     }
+    if(toRecord > totalRecord){
+        toRecord = totalRecord;
+    }
     $("#total-record").text(totalRecord);
     $("#from-record").text(fromRecord);
     $("#to-record").text(toRecord);

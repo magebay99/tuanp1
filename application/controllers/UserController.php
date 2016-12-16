@@ -9,6 +9,10 @@ class UserController extends Zend_Controller_Action
 
     public function indexAction()
     {
+        $session = new Zend_Session_Namespace('Auth');
+        if(empty($session->data)){
+            return $this->redirect("index/index");
+        }
         // action body
     }
 
@@ -263,6 +267,98 @@ class UserController extends Zend_Controller_Action
                 $result = $modelUser->DeleteUser($user, $session->data);
                 echo Zend_Json::encode($result);   
             }            
+        }
+    }
+    
+    public function detailuserAction(){
+        $session = new Zend_Session_Namespace('Auth');
+        if(empty($session->data)){
+            return $this->redirect("index/index");
+        }
+        if(empty($_GET["userId"])){
+            return $this->redirect("index/index");
+        }
+        $userId = $_GET["userId"];
+        $modelUser = new Model_User;
+        $modelUser->setName("users");
+        $modelUser->setPrimary("id");
+        $user = $modelUser->GetUserById($userId);
+        if(count($user) == 0){
+            return $this->redirect("index/index");
+        }
+        $user = $user[0];
+        $this->view->user = $user;
+    }
+    
+    public function changepasswordAction(){
+        
+    }
+    
+    public function uploadimageAction(){
+        $this->_helper->layout->disableLayout();        
+        $this->_helper->viewRenderer->setNoRender();
+        $result = array();
+        if ( 0 < $_FILES['file']['error'] ) {
+            $result["success"] = false;
+            $result["message"] = $_FILES['file']['error'];
+            echo Zend_Json::encode($result);
+        }
+        else {
+            //array_map('unlink', glob("public/temp/*"));
+            $filepath = 'public/temp/' . $_FILES['file']['name'];
+            move_uploaded_file($_FILES['file']['tmp_name'], $filepath);
+            if(file_exists($filepath)){
+                $result["success"] = true;
+                $result["message"] = $filepath;
+                echo Zend_Json::encode($result);
+            }
+            else{
+                $result["success"] = false;
+                $result["message"] = "upload fail";
+                echo Zend_Json::encode($result);
+            }
+        }
+    }
+    
+    public function uploadmultiimageAction(){
+        $this->_helper->layout->disableLayout();        
+        $this->_helper->viewRenderer->setNoRender();
+        $result = array();
+        //array_map('unlink', glob("public/temp/*"));
+        foreach($_FILES["file"]["name"] as $key=>$value){
+            if(0 < $_FILES["file"]["error"][$key]){
+                $result[$value] = false;
+            }
+            else{
+                $filepath = 'public/temp/' . $value;
+                move_uploaded_file($_FILES["file"]["tmp_name"][$key], $filepath);
+                if(!file_exists($filepath)){
+                    $result[$value] = false;
+                }
+                else{
+                    $result[$value] = true;
+                }
+            }
+        }
+        echo Zend_Json::encode($result);
+    }
+    
+    public function updateprofileAction(){
+        $this->_helper->layout->disableLayout();        
+        $this->_helper->viewRenderer->setNoRender();
+        $session = new Zend_Session_Namespace('Auth');
+        if(empty($session->data)){
+            echo Zend_Json::encode(array("success" => false, "message" => "Error!"));
+        }
+        else{            
+            $formData = Zend_Json::decode($this->_request->getPost()['data']);
+            copy($formData["avatar"],$session->data["avatar"]);
+            $formData["avatar"] = $session->data["avatar"];
+            $modelUser = new Model_User;
+            $modelUser->setName("users");
+            $modelUser->setPrimary("id");        
+            $result = $modelUser->UpdateUser($formData, $session->data);
+            echo Zend_Json::encode($result);           
         }
     }
 }

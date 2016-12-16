@@ -1,0 +1,53 @@
+<?php 
+    $this->headTitle("Gallery");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/album.js");
+    $this->headScript()->appendFile($this->baseUrl()."/public/js/upload-image.js");
+    $this->headLink()->appendStylesheet($this->baseUrl()."/public/css/css_custom/image.css");
+?>
+
+<div id="view-content">
+    <div class="row" id="list-album">
+    <!--
+<div class="col-sm-4"> 
+      <div class="panel panel-success text-center">
+        <div class="panel-heading">Title</div>
+        <div class="panel-body">
+            <img src="/tuanp1/public/image/default-image.png" class="img-responsive" style="width:100%" alt="Image">
+        </div>
+      </div>
+    </div>
+-->
+    <div class="col-sm-4"> 
+      <div class="panel panel-success text-center" >
+        <div id="add-icon" class="panel-body"></div>
+      </div>
+    </div>
+  </div>
+  
+<button id="btnShowModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none;">Open Modal</button>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  <input type="file" id="my-file" onchange="UpLoadToTemp(this);" style="display: none;" />
+  <form>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="lblTitle">No Title</h4>
+        <input type="text" id="title" name="title" table="album" idcheck="" class="form-control required unique" placeholder="Title" maxlength="30" style="width: 90%;display: none;" />
+      </div>
+      <div class="modal-body">
+        <img id="upload-image" src="/tuanp1/public/image/default-image.png" class="img-responsive" width="100%" style="cursor: pointer;" />
+        <input type="hidden" id="avatar" name="path" value="public/image/default-image.png" />
+      </div>
+      <div class="modal-footer">
+        <span id="lblDescription" style="float: left;">No Description</span>
+        <textarea class="form-control" rows="3" id="description" name="description" maxlength="200" placeholder="Description" style="display: none;"></textarea>        
+      </div>
+      <a class="btn btn-default" onclick="AddAlbum();">Create</a>
+    </div>
+  </form>
+  </div>
+</div>
+
+</div>

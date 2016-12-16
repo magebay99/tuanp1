@@ -186,3 +186,27 @@ function UpdateUser(){
         });
     }
 }
+
+function UpdateProfile(){
+    var formData = getFormData($("form"));
+    if(validate_form(formData)){
+        $.ajax({
+            url : "updateprofile",
+            type : "POST",
+            data : {data: JSON.stringify(formData)},
+            dataType: "json",
+            error: function (response) {
+                
+            },
+            success: function (response) {
+                $("#errorBox").hide();
+                if(response.success){
+                    alert(response.message);
+                }
+                else{
+                    alert(response.message);
+                }
+            }
+        });
+    }
+}
