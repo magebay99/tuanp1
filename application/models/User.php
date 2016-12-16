@@ -77,6 +77,7 @@ class Model_User extends Model_HubModel{
         $data["created"] = $datetimeNow;
         $data["modified"] = $datetimeNow;
         $data["level"] = 1;
+        $data["avatar"] = "public/image/user_default.png";
         $this->db->beginTransaction();
         try{
             $this->db->insert("users",$data);

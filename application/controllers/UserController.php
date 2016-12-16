@@ -351,8 +351,9 @@ class UserController extends Zend_Controller_Action
         }
         else{            
             $formData = Zend_Json::decode($this->_request->getPost()['data']);
-            copy($formData["avatar"],$session->data["avatar"]);
-            $formData["avatar"] = $session->data["avatar"];
+            $filePath = "public/image/".$session->data["id"].".png";
+            copy($formData["avatar"],$filePath);
+            $formData["avatar"] = $filePath;
             $modelUser = new Model_User;
             $modelUser->setName("users");
             $modelUser->setPrimary("id");        
