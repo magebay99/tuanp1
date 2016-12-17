@@ -356,11 +356,11 @@ class UserController extends Zend_Controller_Action
             $formData["avatar"] = $filePath;
             $modelUser = new Model_User;
             $modelUser->setName("users");
-            $modelUser->setPrimary("id");        
+            $modelUser->setPrimary("id");
             $result = $modelUser->UpdateUser($formData, $session->data);
             $user = $modelUser->GetUserById($session->data["id"]);
             $session->data = $user[0];
-            echo Zend_Json::encode($result);           
+            echo Zend_Json::encode($result);
         }
     }
 }
